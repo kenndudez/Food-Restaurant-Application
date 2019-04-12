@@ -18,6 +18,7 @@ namespace ResWebAPI.Models
         public ModelDB()
             : base("name=ModelDB")
         {
+            base.Configuration.ProxyCreationEnabled = false;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

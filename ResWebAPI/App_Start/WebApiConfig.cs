@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace ResWebAPI
 {
@@ -9,6 +10,7 @@ namespace ResWebAPI
     {
         public static void Register(HttpConfiguration config)
         {
+            config.EnableCors(new EnableCorsAttribute("*", headers: "*", methods: "*"));
             // Web API configuration and services
 
             // Web API routes
