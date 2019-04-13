@@ -43,4 +43,10 @@ export class OrderComponent implements OnInit {
       //this.updateGrandTotal();
     });
   }
+  onDeleteOrderItem(orderItemID: number, i: number) {
+    //if (orderItemID != null)
+     // this.service.formData.DeletedOrderItemIDs += orderItemID + ",";
+    this.service.orderItems.splice(i,1);
+    //this.updateGrandTotal();
+  }
 }

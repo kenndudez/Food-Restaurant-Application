@@ -34,7 +34,7 @@ itemList: Item[];
       }
     else
       this.formData = Object.assign({}, this.orderService.orderItems[this.data.orderItemIndex]);
-      //this.updateTotal();
+      this.updateTotal();
   }
   updatePrice(ctrl) {
     if (ctrl.selectedIndex == 0) {
