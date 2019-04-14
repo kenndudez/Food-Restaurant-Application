@@ -13,9 +13,17 @@ orderList;
     private router : Router) { }
 
   ngOnInit() {
+   this.refreshList();
+  }
+
+  refreshList() {
     this.service.getOrderList().then(res => this.orderList = res);
   }
-  openForEdit(orderID: number) {
-    this.router.navigate(['/order/edit/' + orderID]);
+
+
+  
+  openForEdit(OrderID: number) {
+    this.router.navigate(['/order/edit/' + OrderID]);
   }
+
 }

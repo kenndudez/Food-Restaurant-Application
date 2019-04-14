@@ -31,7 +31,7 @@ else {
   this.service.getOrderByID(parseInt (orderID)).then(res=>{
     this.service.formData = res.order;
     this.service.formData = res.orderDetails;
-  })
+  });
 }
     this.customerService.getCustomerList().then(res => this.customerList = res as Customer[]);
   }
@@ -46,6 +46,7 @@ else {
       CustomerID: 0,
       PMethod: '',
       GTotal: 0,
+      DeletedOrderItemIDs: '',
     };
     this.service.orderItems = [];
   }
@@ -60,8 +61,8 @@ else {
     });
   }
   onDeleteOrderItem(orderItemID: number, i: number) {
-    //if (orderItemID != null)
-     // this.service.formData.DeletedOrderItemIDs += orderItemID + ",";
+    if (orderItemID != null)
+    this.service.formData.DeletedOrderItemIDs += orderItemID + ",";
     this.service.orderItems.splice(i,1);
     this.updateGrandTotal();
   }
@@ -85,7 +86,6 @@ else {
 
   onSubmit(form: NgForm) {
     if (this.validateForm()) {
-
       this.service.saveOrUpdateOrder().subscribe(res => {
         this.resetForm();
         this.toastr.success('Submitted Successfully', 'Restaurent App.');
