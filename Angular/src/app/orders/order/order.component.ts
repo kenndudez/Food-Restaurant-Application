@@ -24,11 +24,11 @@ export class OrderComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    let orderID =  this.currentRoute.snapshot.paramMap.get('id');
-    if(orderID==null)
+    let OrderID =  this.currentRoute.snapshot.paramMap.get('id');
+    if(OrderID==null)
     this.resetForm();
 else {
-  this.service.getOrderByID(parseInt (orderID)).then(res=>{
+  this.service.getOrderByID(parseInt (OrderID)).then(res=>{
     this.service.formData = res.order;
     this.service.formData = res.orderDetails;
   });
@@ -78,7 +78,7 @@ else {
     this.isValid = true;
     if (this.service.formData.CustomerID == 0)
       this.isValid = false;
-    else if (this.service.orderItems.length == 0)
+    else if (this.service.orderItems.length==0)
       this.isValid = false;
     return this.isValid;
   }

@@ -17,15 +17,12 @@ export class OrderService {
       ...this.formData,
       OrderItems: this.orderItems
   };
-  return this.http.post(environment.apiURL+'/Order',body);
+  return this.http.post(environment.apiURL+'/Order', body);
 }
-
-
 getOrderList(){
   return this.http.get(environment.apiURL+'/Order').toPromise();
 }
-
-getOrderByID(id:number):any{
-  return this.http.get(environment.apiURL+'/Order').toPromise();
+getOrderByID(id:number):any {
+  return this.http.get(environment.apiURL + '/Order/'+id).toPromise();
 }
 }

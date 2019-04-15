@@ -30,9 +30,9 @@ namespace ResWebAPI.Controllers
                               a.PMethod,
                               a.GTotal
                           }).ToList();
+
             return result;
         }
-
         // GET: api/Order/5
         [ResponseType(typeof(Order))]
         public IHttpActionResult GetOrder(long id)
@@ -47,7 +47,7 @@ namespace ResWebAPI.Controllers
                              a.CustomerID,
                              a.PMethod,
                              a.GTotal,
-                             DeleteOrderItemsIDs = "",
+                             DeleteOrderItemsIDs = ""
                          }).FirstOrDefault();
             var orderDetails = (from a in db.OrderItems
                                 join b in db.Items on a.ItemID equals b.ItemID
@@ -73,18 +73,19 @@ namespace ResWebAPI.Controllers
             try
             {
                 //Order Table
-                if (order.OrderID == 0)
+                if (order.OrderID== 0)
                     db.Orders.Add(order);  //do insert operation
-                else
+               else
                     db.Entry(order).State = EntityState.Modified;
 
                 //OrderItems table 
                 foreach (var item in order.OrderItems)
                 {
-                        if (item.OrderItemID == 0)
+                        if (item.OrderItemID==0)
                         db.OrderItems.Add(item);
-                    else
-                        db.Entry(item).State = EntityState.Modified;
+                      else
+                      db.Entry(item).State = EntityState.Modified;
+                    
                 }
 
                 //Delete for OrderItems
