@@ -112,10 +112,12 @@ namespace ResWebAPI.Controllers
         [ResponseType(typeof(Order))]
         public IHttpActionResult DeleteOrder(long id)
         {
-            Order order = db.Orders.Find(id);
-            if (order == null)
+            Order order = db.Orders.Include(y=>y.OrderItems)
+                .SingleOrDefault(x => x.OrderID == id);
+
+            foreach (var item in order.OrderItems.ToList())
             {
-                return NotFound();
+                db.OrderItems.Remove(item);
             }
 
             db.Orders.Remove(order);

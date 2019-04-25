@@ -17,7 +17,7 @@ orderList;
   }
 
 
-  openForEdit(OrderID: number) {
-    this.router.navigate(['/order/edit/' + OrderID]);
+  openForEdit(orderID: number) {
+    this.router.navigate(['/order/edit/' + orderID]);
   }
 }
