@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/5f448cf6-dbbd-43a1-9771-f7a473413278/resourceGroups/appsvc_rg_windows_centralus/providers/Microsoft.Web/sites/foodrestuarantapplication",
+    "appService.deploySubpath": ""
+}
