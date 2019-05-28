@@ -1,0 +1,16 @@
+
+<form #loginForm="ngForm" class="mb-4" autocomplete="off" (ngSubmit)="OnSubmit(UserName.value,Password.value)">
+  <div class="form-group">
+    <label>UserName</label>
+    <input type="text" #UserName ngModel name="UserName" placeholder="UserName" class="form-control" required>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" #Password class="form-control" ngModel name="Password" placeholder="Password" required>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-8 offset-md-2">
+      <button [disabled]="!loginForm.valid" class="btn btn-lg btn-block" type="submit">Login</button>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,18 @@
+<h5 class="display-7">Add Mode Of Payment  </h5>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <div class="form-group col-md-8 offset-3"> 
+      <label>Payment Mode </label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <div class="input-group-text">@</div>
+        </div>
+        <input name="PayMode" #Name="ngModel" [(ngModel)]="formData.PayMode" class="form-control" required minilength="5">
+      </div>
+  </div>
+  <div class="form-group offset-3">
+    <button type="submit" class="btn btn-dark" [disabled]="form.invalid"><i class="fa fa-database"></i>
+      Submit</button>
+    <button type="button" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-cancel"></i> Back </button>
+  </div>
+</form>

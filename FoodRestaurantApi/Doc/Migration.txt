@@ -1,0 +1,11 @@
+﻿
+
+================================================ FoodResContext ============================================
+
+
+
+Enable-Migrations  -ContextTypeName FoodResContext -MigrationsDirectory Migrations\FRC
+
+add-migration -ConfigurationTypeName FoodRestaurantApi.Migrations.FRC.Configuration "InitialCreate"
+
+update-database -ConfigurationTypeName FoodRestaurantApi.Migrations.FRC.Configuration

@@ -3,11 +3,14 @@ import { Order } from './order.model';
 import { OrderItem } from './order-item.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { PaymentMode } from './paymentmode.model';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
+  paymentList: PaymentMode[]
   formData: Order;
   orderItems: OrderItem[];
   constructor(private http: HttpClient) { }
