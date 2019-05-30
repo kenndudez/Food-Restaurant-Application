@@ -38,6 +38,11 @@ namespace FoodRestaurantApi.Providers
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
+            if (!userManager.IsEmailConfirmed(user.Id))
+            {
+                context.SetError("uncomfirmed_account", "The user's account has not been activated.");
+                return;
+            }
 
             ClaimsIdentity oAuthIdentity = await user.GenerateUserIdentityAsync(userManager,
                OAuthDefaults.AuthenticationType);

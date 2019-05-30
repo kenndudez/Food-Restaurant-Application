@@ -38,7 +38,7 @@ export class SignUpComponent implements OnInit {
         {
           this.resetForm(form);
           this.toastr.success('User registration successful');
-        }    
-    })
+        }
+    });   
   }
 }

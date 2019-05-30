@@ -4,6 +4,10 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using FoodRestaurantApi.Models;
+using Microsoft.Owin.Security;
+using System.Security.Claims;
+using System;
+using Microsoft.Owin.Security.DataProtection;
 
 namespace FoodRestaurantApi
 {
@@ -34,12 +38,16 @@ namespace FoodRestaurantApi
                 RequireLowercase = false,
                 RequireUppercase = false,
             };
+
+            // Code for send mail.
+            manager.EmailService = new Services.EmailClassic();
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
+                manager.UserTokenProvider = new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("EmailConfirmation"));
             }
             return manager;
+            
         }
     }
 }

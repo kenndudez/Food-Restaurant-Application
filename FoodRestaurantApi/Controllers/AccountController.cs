@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using FoodRestaurantApi.Models;
 using FoodRestaurantApi.Providers;
 using FoodRestaurantApi.Results;
+using System.Net.Mail;
 
 namespace FoodRestaurantApi.Controllers
 {
@@ -336,9 +337,50 @@ namespace FoodRestaurantApi.Controllers
             {
                 return GetErrorResult(result);
             }
+            #region Added Code for Send Email
 
+            string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+            code = HttpUtility.UrlEncode(code);
+            try
+            {
+
+                string callbackUrl = Url.Link("DefaultApi", new { controller = "Account/ConfirmEmail", userId = user.Id, code = code });
+
+                await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                //Uri locationHeader = new Uri(Url.Link("GetUserById", new { id = user.Id }));
+            }
+            catch (Exception ex)
+            {
+
+            }
             return Ok();
         }
+        #endregion 
+        
+        #region Confirm Email 
+
+        //
+        // GET: /Account/ConfirmEmail
+        [Route("ConfirmEmail")]
+        [AllowAnonymous]
+        [HttpGet]
+        public async Task<IHttpActionResult> ConfirmEmail(string userId, string code)
+        {
+            if (userId == null || code == null)
+            {
+                return NotFound();
+            }
+
+            code = HttpUtility.UrlDecode(code);
+
+            var result = await UserManager.ConfirmEmailAsync(userId, code);
+            return Ok(result.Succeeded ? "ConfirmEmail" : "Error");
+        }
+
+#endregion
+
+
 
         // POST api/Account/RegisterExternal
         [OverrideAuthentication]
@@ -489,6 +531,7 @@ namespace FoodRestaurantApi.Controllers
             }
         }
 
-        #endregion
+        
     }
 }
+#endregion
