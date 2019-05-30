@@ -37,7 +37,7 @@ export class SignUpComponent implements OnInit {
       .subscribe(data => {
         {
           this.resetForm(form);
-          this.toastr.success('User registration successful');
+          this.toastr.success('Login To Your Email To Confirm Registration');
         }
     });   
   }
