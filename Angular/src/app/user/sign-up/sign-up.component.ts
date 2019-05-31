@@ -34,11 +34,16 @@ export class SignUpComponent implements OnInit {
  
   OnSubmit(form: NgForm) {
     this.userService.registerUser(form.value)
-      .subscribe(data => {
+      .subscribe(data => 
         {
           this.resetForm(form);
-          this.toastr.success('Login To Your Email To Confirm Registration');
-        }
-    });   
+          this.toastr.success('Registration Confirmation.', 'Login To Your Email To Confirm Registration');
+        },
+        err=> {
+          if (err.status == 400)
+        this.toastr.error('User Already Exist.', 'Authentication failed.');
+      else
+        console.log(err);
+        });   
   }
 }
